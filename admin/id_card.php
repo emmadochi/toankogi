@@ -1,13 +1,13 @@
 <?php include 'layouts/header.php'; 
 
-// Dummy member data for preview
-$member_id = $_GET['id'] ?? 'KOG-LOK-00124';
+// Fetch data from GET parameters for dynamic preview
+$member_id = $_GET['id'] ?? 'KOG-LOK-' . rand(10000, 99999);
 $member_name = $_GET['name'] ?? 'Ameh Sunday';
 $plate_no = $_GET['plate'] ?? 'LKJ-123-AB';
 $lga = $_GET['lga'] ?? 'Lokoja';
 $unit = $_GET['unit'] ?? 'Central Park';
 $status = $_GET['status'] ?? 'Verified';
-$expiry = $_GET['expiry'] ?? '2026-03-26';
+$expiry = $_GET['expiry'] ?? date('Y-m-d', strtotime('+1 year'));
 ?>
 
 <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
@@ -84,9 +84,9 @@ $expiry = $_GET['expiry'] ?? '2026-03-26';
                     <div style="width: 120px; height: 30px; border-bottom: 1px solid var(--dark); opacity: 0.3;"></div>
                     <p style="font-size: 0.55rem; font-weight: 700; margin-top: 4px; color: var(--dark-alt);">STATE CHAIRMAN, TOAN KOGI</p>
                 </div>
-                <div style="width: 80px; height: 80px; background: white; padding: 5px; border: 1px solid var(--glass-border); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                    <!-- Dummy QR -->
-                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent); background-size: 6px 6px; opacity: 0.8;"></div>
+                <div id="id-qrcode" style="width: 80px; height: 80px; background: white; padding: 5px; border: 1px solid var(--glass-border); border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <!-- Real QR will be rendered here -->
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent); background-size: 6px 6px; opacity: 0.2;"></div>
                 </div>
             </div>
         </div>
@@ -110,5 +110,22 @@ $expiry = $_GET['expiry'] ?? '2026-03-26';
     }
 }
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const qrcodeElement = document.getElementById("id-qrcode");
+    qrcodeElement.innerHTML = "";
+    
+    new QRCode(qrcodeElement, {
+        text: "MEMBER:<?php echo $member_id; ?>|NAME:<?php echo $member_name; ?>",
+        width: 68,
+        height: 68,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+});
+</script>
 
 <?php include 'layouts/footer.php'; ?>

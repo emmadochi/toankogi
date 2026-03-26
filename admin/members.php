@@ -129,9 +129,9 @@
                         <span class="status-check <?php echo $status_class; ?>"><?php echo $m[7]; ?></span>
                     </td>
                     <td>
-                        <div style="display: flex; gap: 10px;">
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <a href="member_details.php?id=<?php echo urlencode($m[1]); ?>&name=<?php echo urlencode($m[0]); ?>" class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.75rem; border-radius: 6px;">View Details</a>
                             <a href="id_card.php?id=<?php echo urlencode($m[1]); ?>&name=<?php echo urlencode($m[0]); ?>&plate=<?php echo urlencode($m[2]); ?>&lga=<?php echo urlencode($m[3]); ?>&unit=<?php echo urlencode($m[4]); ?>&expiry=<?php echo urlencode($m[6]); ?>&status=<?php echo urlencode($m[7]); ?>" title="View ID Card" style="text-decoration: none; border: none; background: none; color: var(--primary); cursor: pointer; font-size: 1.1rem;">📇</a>
-                            <button title="Edit Profile" style="border: none; background: none; color: var(--secondary); cursor: pointer; font-size: 1.1rem;">✏️</button>
                             <button title="More Options" style="border: none; background: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem;">⋯</button>
                         </div>
                     </td>

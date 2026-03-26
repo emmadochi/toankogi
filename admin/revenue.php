@@ -7,6 +7,7 @@
             <p class="page-subtitle">Historical transaction data and financial monitoring.</p>
         </div>
         <div style="display: flex; gap: 0.8rem;">
+            <a href="payment.php" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; text-decoration: none;">💳 Process New Payment</a>
             <button class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">📅 This Month</button>
             <button class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">📥 Export CSV</button>
         </div>

@@ -34,95 +34,126 @@
 </div>
 
 <div class="content-grid">
-    <!-- Revenue Chart Placeholder -->
+    <!-- Revenue Trend Chart -->
     <div class="card">
         <div class="card-title">
             <span>Payment Trends (Last 7 Days)</span>
-            <select style="padding: 0.4rem; border-radius: 8px; border: 1px solid var(--glass-border); font-family: inherit; font-size: 0.8rem;">
+            <select id="trendFilter" style="padding: 0.4rem; border-radius: 8px; border: 1px solid var(--glass-border); font-family: inherit; font-size: 0.8rem;">
                 <option>Daily</option>
                 <option>Weekly</option>
             </select>
         </div>
-        <div class="chart-container" style="height: 300px; display: flex; align-items: flex-end; justify-content: space-between; padding-top: 2rem;">
-            <!-- Dummy CSS Chart Bars -->
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="60" style="width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Mon</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="85" style="width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Tue</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="45" style="width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Wed</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="70" style="width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Thu</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="95" style="width: 40px; background: var(--secondary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Fri</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="30" style="width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Sat</span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <div class="dummy-chart-bar" data-height="20" style="width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 1s ease; height: 0;"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">Sun</span>
-            </div>
+        <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+            <canvas id="revenueTrendChart"></canvas>
         </div>
     </div>
 
-    <!-- Top Performing Units -->
+    <!-- Revenue by LGA Chart -->
     <div class="card">
-        <div class="card-title">Top Performing Units</div>
-        <ul style="list-style: none;">
-            <li style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
-                <div>
-                    <p style="font-weight: 600; font-size: 0.9rem;">Lokoja Central Unit 1</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">Lokoja LGA</p>
-                </div>
-                <div style="text-align: right;">
-                    <p style="font-weight: 700; color: var(--primary);">₦850,400</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">98% Target</p>
-                </div>
-            </li>
-            <li style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
-                <div>
-                    <p style="font-weight: 600; font-size: 0.9rem;">Okene Main Market</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">Okene LGA</p>
-                </div>
-                <div style="text-align: right;">
-                    <p style="font-weight: 700; color: var(--primary);">₦720,150</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">92% Target</p>
-                </div>
-            </li>
-            <li style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
-                <div>
-                    <p style="font-weight: 600; font-size: 0.9rem;">Anyigba University Gate</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">Dekina LGA</p>
-                </div>
-                <div style="text-align: right;">
-                    <p style="font-weight: 700; color: var(--primary);">₦680,900</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">88% Target</p>
-                </div>
-            </li>
-            <li style="display: flex; justify-content: space-between; padding: 1rem 0;">
-                <div>
-                    <p style="font-weight: 600; font-size: 0.9rem;">Idah Waterfront</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">Idah LGA</p>
-                </div>
-                <div style="text-align: right;">
-                    <p style="font-weight: 700; color: var(--primary);">₦590,200</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">85% Target</p>
-                </div>
-            </li>
-        </ul>
+        <div class="card-title">Revenue by LGA</div>
+        <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+            <canvas id="lgaRevenueChart"></canvas>
+        </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Shared Chart Options
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    usePointStyle: true,
+                    font: {
+                        family: 'Outfit',
+                        size: 11
+                    }
+                }
+            }
+        }
+    };
+
+    // 1. Revenue Trend Chart (Line)
+    const trendCtx = document.getElementById('revenueTrendChart').getContext('2d');
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Revenue (₦)',
+                data: [420000, 580000, 310000, 490000, 650000, 210000, 150000],
+                borderColor: '#059669',
+                backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 3,
+                pointBackgroundColor: '#059669',
+                pointRadius: 4
+            }]
+        },
+        options: {
+            ...chartOptions,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        drawBorder: false,
+                        color: 'rgba(0,0,0,0.05)'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return '₦' + value.toLocaleString();
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    // 2. Revenue by LGA Chart (Doughnut)
+    const lgaCtx = document.getElementById('lgaRevenueChart').getContext('2d');
+    new Chart(lgaCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Lokoja', 'Okene', 'Dekina', 'Idah', 'Kabba', 'Ankpa'],
+            datasets: [{
+                data: [1250000, 850000, 720000, 590000, 420000, 420000],
+                backgroundColor: [
+                    '#059669', // Lokoja (Primary)
+                    '#d97706', // Okene (Secondary)
+                    '#10b981', // Dekina
+                    '#0f172a', // Idah
+                    '#3b82f6', // Kabba
+                    '#6366f1'  // Ankpa
+                ],
+                borderWidth: 0,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            ...chartOptions,
+            cutout: '70%',
+            plugins: {
+                ...chartOptions.plugins,
+                legend: {
+                    ...chartOptions.plugins.legend,
+                    position: 'right'
+                }
+            }
+        }
+    });
+});
+</script>
 
 <!-- Recent Activities -->
 <div class="card" style="margin-top: 1.5rem;">

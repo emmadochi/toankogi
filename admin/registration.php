@@ -31,7 +31,7 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                     <div class="form-group">
                         <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Full Name</label>
-                        <input type="text" placeholder="e.g. Ameh Sunday" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); transition: var(--transition);">
+                        <input type="text" id="reg-name" placeholder="e.g. Ameh Sunday" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); transition: var(--transition);">
                     </div>
                     <div class="form-group">
                         <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Phone Number</label>
@@ -74,7 +74,7 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                     <div class="form-group">
                         <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Plate Number</label>
-                        <input type="text" placeholder="e.g. LKJ-123-ABC" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt);">
+                        <input type="text" id="reg-plate" placeholder="e.g. LKJ-123-ABC" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt);">
                     </div>
                     <div class="form-group">
                         <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Engine Number</label>
@@ -105,7 +105,7 @@
 
             <!-- Action Buttons -->
             <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
-                <button type="button" class="btn btn-primary" style="flex: 1; padding: 1rem;">Complete Registration</button>
+                <button type="button" id="complete-reg-btn" class="btn btn-primary" style="flex: 1; padding: 1rem;">Complete Registration</button>
                 <button type="reset" class="btn btn-outline" style="padding: 1rem;">Clear Form</button>
             </div>
         </form>
@@ -125,7 +125,7 @@
                 <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; text-align: left;">
                     <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.4rem;">
                         <span style="opacity: 0.6;">Plate No:</span>
-                        <span style="font-weight: 600;">PENDING</span>
+                        <span style="font-weight: 600;" id="preview-plate">PENDING</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.4rem;">
                         <span style="opacity: 0.6;">Unit:</span>
@@ -158,5 +158,44 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('reg-name');
+    const plateInput = document.getElementById('reg-plate');
+    const previewName = document.getElementById('preview-name');
+    const previewPlate = document.getElementById('preview-plate');
+    const completeBtn = document.getElementById('complete-reg-btn');
+
+    // Live Preview Logic
+    nameInput.addEventListener('input', (e) => {
+        previewName.textContent = e.target.value || 'New Member';
+    });
+
+    plateInput.addEventListener('input', (e) => {
+        if (previewPlate) previewPlate.textContent = e.target.value.toUpperCase() || 'PENDING';
+    });
+
+    // Handle Completion
+    completeBtn.addEventListener('click', function() {
+        const name = nameInput.value || 'New Member';
+        const plate = plateInput.value || 'PENDING';
+        
+        if (!nameInput.value || !plateInput.value) {
+            alert('Please fill in the Member Name and Plate Number.');
+            return;
+        }
+
+        // Show a brief loading state
+        this.innerHTML = 'Processing...';
+        this.disabled = true;
+
+        setTimeout(() => {
+            // Redirect to success page with data
+            window.location.href = `registration_success.php?name=${encodeURIComponent(name)}&plate=${encodeURIComponent(plate)}`;
+        }, 1500);
+    });
+});
+</script>
 
 <?php include 'layouts/footer.php'; ?>

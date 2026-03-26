@@ -1,11 +1,20 @@
-<?php include 'layouts/header.php'; ?>
+<?php include 'layouts/header.php'; 
+
+// Fetch data from GET parameters
+$transaction_id = $_GET['trx'] ?? 'TRX-' . rand(10000, 99999) . '-KOGI';
+$member_id = $_GET['id'] ?? 'KOG-LOK-00124';
+$member_name = $_GET['name'] ?? 'Ameh Sunday';
+$plate_no = $_GET['plate'] ?? 'LKJ-123-AB';
+$lga = $_GET['lga'] ?? 'Lokoja';
+$unit = $_GET['unit'] ?? 'Central Park';
+?>
 
 <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
     <div style="display: flex; gap: 1rem; align-items: center;">
-        <a href="revenue.php" style="text-decoration: none; font-size: 1.5rem; color: var(--text-muted); padding: 0.5rem;">←</a>
+        <a href="registration_success.php" style="text-decoration: none; font-size: 1.5rem; color: var(--text-muted); padding: 0.5rem;">←</a>
         <div>
             <h1 class="page-title">Digital Receipt Preview</h1>
-            <p class="page-subtitle">Transaction ID: #TRX-99284-KOGI</p>
+            <p class="page-subtitle">Transaction ID: #<?php echo $transaction_id; ?></p>
         </div>
     </div>
     <div style="display: flex; gap: 1rem;">
@@ -39,19 +48,19 @@
         <div style="border-top: 1px dashed var(--glass-border); border-bottom: 1px dashed var(--glass-border); padding: 1.5rem 0; margin-bottom: 2rem;">
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span style="font-size: 0.85rem; color: var(--text-muted);">Member Name</span>
-                <span style="font-size: 0.85rem; font-weight: 700;">Ameh Sunday</span>
+                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo $member_name; ?></span>
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span style="font-size: 0.85rem; color: var(--text-muted);">Unique ID</span>
-                <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">KOG-LOK-01-00124</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);"><?php echo $member_id; ?></span>
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span style="font-size: 0.85rem; color: var(--text-muted);">Plate Number</span>
-                <span style="font-size: 0.85rem; font-weight: 700;">LKJ-123-AB</span>
+                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo $plate_no; ?></span>
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span style="font-size: 0.85rem; color: var(--text-muted);">LGA / Unit</span>
-                <span style="font-size: 0.85rem; font-weight: 700;">Lokoja / Central Park</span>
+                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo $lga; ?> / <?php echo $unit; ?></span>
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                 <span style="font-size: 0.85rem; color: var(--text-muted);">Payment Cycle</span>
@@ -65,9 +74,9 @@
 
         <!-- Verification Section -->
         <div style="display: flex; gap: 1.5rem; align-items: center; background: var(--bg-alt); padding: 1.25rem; border-radius: 12px;">
-            <div style="width: 80px; height: 80px; background: white; padding: 6px; border-radius: 8px;">
-                <!-- Dummy QR -->
-                <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent); background-size: 8px 8px; opacity: 0.8;"></div>
+            <div id="receipt-qrcode" style="width: 80px; height: 80px; background: white; padding: 6px; border-radius: 8px;">
+                <!-- Real QR will be rendered here -->
+                <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent); background-size: 8px 8px; opacity: 0.2;"></div>
             </div>
             <div style="flex: 1;">
                 <p style="font-size: 0.75rem; font-weight: 700; margin-bottom: 0.3rem;">SECURITY VERIFICATION</p>
@@ -96,5 +105,22 @@
     body { background: white !important; }
 }
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const qrcodeElement = document.getElementById("receipt-qrcode");
+    qrcodeElement.innerHTML = "";
+    
+    new QRCode(qrcodeElement, {
+        text: "RECEIPT:<?php echo $transaction_id; ?>|MEMBER:<?php echo $member_id; ?>",
+        width: 68,
+        height: 68,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+});
+</script>
 
 <?php include 'layouts/footer.php'; ?>

@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome placeholder (icons will use fallback text/emojis for now) -->
     <link rel="stylesheet" href="assets/css/admin.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <?php include 'layouts/sidebar.php'; ?>
