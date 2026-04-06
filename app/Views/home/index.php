@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $data['title']; ?></title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="<?php echo URLROOT; ?>/images/logo.jpeg">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="<?php echo URLROOT; ?>" style="text-decoration: none; display: flex; align-items: center;">
+                    <img src="<?php echo URLROOT; ?>/images/logo.jpeg" alt="TOAN Logo" class="nav-logo-img">
+                    <span class="logo-text">TOAN <span class="state">KOGI</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="<?php echo URLROOT; ?>/home/about">About TOAN</a></li>
+                <li><a href="<?php echo URLROOT; ?>/home/downloads">Downloads</a></li>
+                <li><a href="#why-tax">Why Pay Tax?</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#roadmap">How to Register</a></li>
+                <li><a href="<?php echo URLROOT; ?>/home/contact">Contact Us</a></li>
+                <li><a href="<?php echo URLROOT; ?>/auth/login" class="btn btn-primary">Login</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <header class="hero-slider" style="border-top: 4px solid var(--accent-red);">
+        <div class="slides">
+            <!-- Slide 1: Welcome -->
+            <div class="slide active">
+                <div class="container hero-grid">
+                    <div class="hero-content">
+                        <div class="badge badge-red">Official Portal for TOAN Members</div>
+                        <h1>Driving Kogi's <span class="highlight-yellow">Digital Prosperity</span></h1>
+                        <p>Official TOAN Kogi State portal—modernizing transport through secure, verified digital systems.</p>
+                        <div class="hero-btns">
+                            <a href="#roadmap" class="btn btn-secondary">Get Registered</a>
+                            <a href="<?php echo URLROOT; ?>/home/downloads" class="btn btn-primary">Member Resources</a>
+                            <a href="<?php echo URLROOT; ?>/home/about" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-bg" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('<?php echo URLROOT; ?>/images/keke.jpeg');"></div>
+            </div>
+            <!-- Slide 2: Why Pay Tax -->
+            <div class="slide">
+                <div class="container hero-grid">
+                    <div class="hero-content">
+                        <div class="badge">Security & Compliance</div>
+                        <h1>Your <span class="highlight">Contribution</span>, Your Protection.</h1>
+                        <p>Paying your tax isn't just a duty; it's your shield. Legal compliance ensures your tricycle is recognized, protected, and authorized to operate across Kogi State.</p>
+                        <div class="hero-btns">
+                            <a href="#why-tax" class="btn btn-secondary">Importance of Tax</a>
+                            <a href="#contact" class="btn btn-outline">Have Questions?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-bg" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('<?php echo URLROOT; ?>/images/keke1.jpeg');"></div>
+            </div>
+            <!-- Slide 3: Impact -->
+            <div class="slide">
+                <div class="container hero-grid">
+                    <div class="hero-content">
+                        <div class="badge">Building a Better Kogi</div>
+                        <h1>Transparency at <span class="highlight">Work</span>.</h1>
+                        <p>Every naira collected from our members is a seed for Kogi's growth. See how your tax is funding smoother roads, safer parks, and modern infrastructure for our families.</p>
+                        <div class="hero-btns">
+                            <a href="#impact" class="btn btn-secondary">View Impact</a>
+                            <a href="#gallery" class="btn btn-outline">Our Success</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-bg" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('<?php echo URLROOT; ?>/images/outreach.jpeg');"></div>
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+            <button class="slider-prev">&lt;</button>
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="slider-next">&gt;</button>
+        </div>
+    </header>
+
+    <!-- Impact Stats -->
+    <section id="stats" class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3 id="stat-lga">21</h3>
+                <p>LGAs Engaged</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="stat-keke">15,420+</h3>
+                <p>Members Registered</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="stat-growth">100%</h3>
+                <p>Digital Records</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="stat-transparency" style="color: var(--accent-yellow-dark);">₦1.2B</h3>
+                <p>Revenue Reinvestment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About TOAN Section -->
+    <section id="about" class="about">
+        <div class="container about-grid">
+            <div class="about-image">
+                <img src="<?php echo URLROOT; ?>/images/look.jpeg" alt="About TOAN Kogi" class="glass-border-img">
+            </div>
+            <div class="about-text">
+                <div class="badge">About the Association</div>
+                <h2>The Pulse of Kogi's <span class="highlight">Transportation</span></h2>
+                <p>The Tricycle Owners Association of Nigeria (TOAN), Kogi State Chapter, is the unified body representing the interests of thousands of tricycle operators across our confluence state. Our partnership with the Kogi State Government through this digital system ensures that our members' contributions are handled with total integrity.</p>
+                <p>We believe that a registered member is a protected member. Our mission is to modernize our trade, improve welfare, and lead Kogi's transport revolution.</p>
+                <ul class="about-list">
+                    <li>✓ Representing Member Rights & Welfare</li>
+                    <li>✓ Partnering for State Development</li>
+                    <li>✓ Driving Technological Modernization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Importance of Tax Section -->
+    <section id="why-tax" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Importance of <span class="highlight">Paying Tax</span></h2>
+                <p>Why your contribution is the foundation of your success.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass">
+                    <div class="icon" style="color: var(--accent-yellow-dark);">⚖️</div>
+                    <h3>Legal Authorization</h3>
+                    <p>Paying your tax grants you the legal right to operate on any Kogi State road without harassment or penalties.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon">🛡️</div>
+                    <h3>Business Security</h3>
+                    <p>Digital registration ties your tricycle to your unique ID, making it easy to track and recover in case of theft or dispute.</p>
+                </div>
+                <div class="feature-card glass">
+                    <div class="icon">🤝</div>
+                    <h3>Access to Benefits</h3>
+                    <p>Only tax-compliant members are eligible for association welfare, government incentives, and future micro-loan programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Tax, Our <span class="highlight">Impact</span></h2>
+                <p>See where your money goes and how it builds our state.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card glass">
+                    <div class="blog-img">
+                        <img src="<?php echo URLROOT; ?>/images/outreach2.jpeg" alt="Better Roads">
+                    </div>
+                    <div class="blog-content">
+                        <span class="date">Infrastructure</span>
+                        <h4>Better Roads, Faster Delivery</h4>
+                        <p>Tax revenue is being used to rehabilitate arterial roads in Lokoja, Okene, and Idah, reducing vehicle wear and tear for our members.</p>
+                    </div>
+                </article>
+                <article class="blog-card glass">
+                    <div class="blog-img">
+                        <img src="<?php echo URLROOT; ?>/images/withformergov.jpeg" alt="Secure Parks">
+                    </div>
+                    <div class="blog-content">
+                        <span class="date">Security</span>
+                        <h4>Modern & Secure Tricycle Parks</h4>
+                        <p>We are building designated digital loading zones with enhanced security to ensure our members can work in a safe environment.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap / How to Register Section -->
+    <section id="roadmap" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>Roadmap to <span class="highlight">Compliance</span></h2>
+                <p>Follow these 4 simple steps to become a fully registered TOAN member.</p>
+            </div>
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h4>Visit Unit Admin</h4>
+                    <p>Locate your local TOAN Unit Administrator in your specific LGA or ward.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h4>Provide Details</h4>
+                    <p>Present your plate number and personal ID for digital capturing in the system.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h4>Pay & Verify</h4>
+                    <p>Choose your payment cycle (Daily/Weekly/Monthly) and pay to the authorized agent.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <h4>Get Certified</h4>
+                    <p>Receive your Unique ID and Digital Receipt instantly via SMS or your mobile dashboard.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="<?php echo URLROOT; ?>/home/contact" class="btn btn-primary">Find Nearest Registration Center</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>TOAN Kogi in <span class="highlight">Action</span></h2>
+                <p>A visual showcase of our members and community impact.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item glass">
+                    <span class="badge badge-red" style="position: absolute; top: 1rem; right: 1rem; z-index: 2; margin: 0;">New</span>
+                    <img src="<?php echo URLROOT; ?>/images/outreach.jpeg" alt="Gallery 1">
+                    <div class="gallery-overlay"><h4>New Parks</h4></div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="<?php echo URLROOT; ?>/images/look.jpeg" alt="Gallery 2">
+                    <div class="gallery-overlay"><h4>Digital Hubs</h4></div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="<?php echo URLROOT; ?>/images/withformergov.jpeg" alt="Gallery 3">
+                    <div class="gallery-overlay"><h4>Member Success</h4></div>
+                </div>
+                <div class="gallery-item glass">
+                    <img src="<?php echo URLROOT; ?>/images/outreach2.jpeg" alt="Gallery 4">
+                    <div class="gallery-overlay"><h4>Board Meetings</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Member <span class="highlight">Support</span> (FAQ)</h2>
+                <p>Everything you need to know about your association and tax status.</p>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item glass">
+                    <div class="faq-question">Why must I register with TOAN Kogi? <span>+</span></div>
+                    <div class="faq-answer">Registration and tax payment protect you from illegal enforcement and ensure you are part of the recognized state transport network.</div>
+                </div>
+                <div class="faq-item glass">
+                    <div class="faq-question">Can I pay for my tax online? <span>+</span></div>
+                    <div class="faq-answer">Yes! You can pay through authorized agents or use our upcoming online payment portal.</div>
+                </div>
+                <div class="faq-item glass">
+                    <div class="faq-question">What happen if I lose my digital receipt? <span>+</span></div>
+                    <div class="faq-answer">Don't worry. Your data is cloud-secured. Simply provide your plate number to any agent to retrieve your status.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container contact-grid">
+            <div class="contact-info">
+                <h2>Contact <span class="highlight">TOAN Kogi</span></h2>
+                <p>Need help with your registration or have a dispute to report? Contact our state headquarters.</p>
+                <div class="contact-details">
+                    <p>📍 TOAN State Secretariat, Lokoja, Kogi State</p>
+                    <p>📞 +234 800 TOAN KOGI</p>
+                    <p>✉️ support@toankogi.org.ng</p>
+                </div>
+            </div>
+            <div class="contact-form glass">
+                <form id="landing-contact">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <img src="<?php echo URLROOT; ?>/images/logo.jpeg" alt="TOAN Logo" class="footer-logo-img">
+                    <span class="logo-text">TOAN <span class="state">KOGI</span></span>
+                    <p>Dedicated to the welfare, education, and economic empowerment of tricycle owners and operators across Kogi State. Partnering for a sustainable revenue future.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">TW</a>
+                        <a href="#" class="social-icon">IG</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="<?php echo URLROOT; ?>">Home Portal</a></li>
+                        <li><a href="<?php echo URLROOT; ?>/home/about">About Association</a></li>
+                        <li><a href="<?php echo URLROOT; ?>/home/downloads">Member Downloads</a></li>
+                        <li><a href="<?php echo URLROOT; ?>/home/contact">Contact & Support</a></li>
+                        <li><a href="#why-tax">Tax Education</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Member Area</h4>
+                    <ul>
+                        <li><a href="<?php echo URLROOT; ?>/auth/login">Member Login</a></li>
+                        <li><a href="#roadmap">Registration Guide</a></li>
+                        <li><a href="<?php echo URLROOT; ?>/home/contact">Find Your Unit</a></li>
+                        <li><a href="#">Verify Receipt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Official Contact</h4>
+                    <div class="footer-contact-item">
+                        <span>📍</span>
+                        <span>State Secretariat, Near KGIRS HQ, Lokoja, Kogi State</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>📞</span>
+                        <span>0800 8626 5644</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>✉️</span>
+                        <span>support@toankogi.org.ng</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-grid">
+                    <div class="footer-copy">
+                        &copy; 2026 TOAN Kogi State Chapter. All Rights Reserved.
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="footer-partnership">
+                    Official Partner: <strong>Kogi State Government</strong> | <strong>KGIRS</strong>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="<?php echo URLROOT; ?>/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<?php include 'layouts/header.php'; ?>
+<?php require APPROOT . '/Views/inc/admin/header.php'; ?>
 
 <div class="page-header">
     <h1 class="page-title">Reporting & Analytics</h1>
@@ -63,13 +63,11 @@
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
         <div class="card" style="border-left: 4px solid var(--primary);">
             <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Most Productive Day</h4>
-            <p style="font-size: 1.5rem; font-weight: 700;">Friday</p>
-            <p style="font-size: 0.8rem; color: var(--text-muted);">Average: ₦1.8M / Friday</p>
+            <p style="font-size: 1.5rem; font-weight: 700;"><?php echo htmlspecialchars($data['analytics']->most_productive_day); ?></p>
         </div>
         <div class="card" style="border-left: 4px solid var(--secondary);">
             <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Highest Growth LGA</h4>
-            <p style="font-size: 1.5rem; font-weight: 700;">Adavi</p>
-            <p style="font-size: 0.8rem; color: var(--text-muted);">↑ 22% increase this month</p>
+            <p style="font-size: 1.5rem; font-weight: 700;"><?php echo htmlspecialchars($data['analytics']->highest_growth_lga); ?></p>
         </div>
         <div class="card" style="background: var(--dark); color: white;">
             <h4 style="font-size: 0.9rem; margin-bottom: 1rem;">System Health</h4>
@@ -92,15 +90,34 @@
 </div>
 
 <script>
+<?php
+// Prepare chart data for JS
+$trendLabels = [];
+$trendData = [];
+foreach($data['analytics']->monthly_trend as $mt) {
+    // limit month to 3 chars
+    $trendLabels[] = substr($mt->month, 0, 3);
+    $trendData[] = $mt->total;
+}
+
+$lgaLabels = [];
+$lgaData = [];
+foreach($data['analytics']->top_lgas as $lga) {
+    $lgaLabels[] = $lga->name;
+    $lgaData[] = $lga->total;
+}
+
+$complianceData = $data['analytics']->compliance; // [paid, unpaid, grace]
+?>
 document.addEventListener('DOMContentLoaded', function() {
     const ctxTrend = document.getElementById('revenueTrendChart').getContext('2d');
     new Chart(ctxTrend, {
         type: 'line',
         data: {
-            labels: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+            labels: <?php echo json_encode($trendLabels); ?>,
             datasets: [{
-                label: 'Monthly Revenue (Million ₦)',
-                data: [8.5, 9.2, 12.8, 10.5, 11.8, 14.5],
+                label: 'Monthly Revenue (₦)',
+                data: <?php echo json_encode($trendData); ?>,
                 borderColor: '#059669',
                 backgroundColor: 'rgba(5, 150, 105, 0.1)',
                 fill: true,
@@ -126,10 +143,10 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(ctxLga, {
         type: 'bar',
         data: {
-            labels: ['Lokoja', 'Okene', 'Adavi', 'Ajaokuta', 'Dekina', 'Idah', 'Kabba', 'Ankpa'],
+            labels: <?php echo json_encode($lgaLabels); ?>,
             datasets: [{
                 label: 'Collections (₦)',
-                data: [1200000, 950000, 880000, 720000, 650000, 580000, 520000, 480000],
+                data: <?php echo json_encode($lgaData); ?>,
                 backgroundColor: '#059669',
                 borderRadius: 5
             }]
@@ -151,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         data: {
             labels: ['Paid members', 'Unpaid members', 'Grace Period'],
             datasets: [{
-                data: [65, 25, 10],
+                data: <?php echo json_encode($complianceData); ?>,
                 backgroundColor: ['#059669', '#ef4444', '#f59e0b'],
                 borderWidth: 0,
                 weight: 0.5
@@ -192,15 +209,15 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: left;">
                 <div style="padding: 1rem; background: white; border-radius: 10px; border: 1px solid var(--glass-border);">
                     <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Total Collections</label>
-                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">₦12,450,200</p>
+                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">₦<?php echo number_format($data['analytics']->total_collections, 2); ?></p>
                 </div>
                 <div style="padding: 1rem; background: white; border-radius: 10px; border: 1px solid var(--glass-border);">
                     <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Unique Members</label>
-                    <p style="font-size: 1.25rem; font-weight: 700;">8,450</p>
+                    <p style="font-size: 1.25rem; font-weight: 700;"><?php echo number_format($data['analytics']->unique_members); ?></p>
                 </div>
                 <div style="padding: 1rem; background: white; border-radius: 10px; border: 1px solid var(--glass-border);">
                     <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Enforcement Rate</label>
-                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--secondary);">94.2%</p>
+                    <p style="font-size: 1.25rem; font-weight: 700; color: var(--secondary);"><?php echo $data['analytics']->enforcement_rate; ?>%</p>
                 </div>
             </div>
 
@@ -209,31 +226,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
-
-    <!-- Quick Insights -->
-    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <div class="card" style="border-left: 4px solid var(--primary);">
-            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Most Productive Day</h4>
-            <p style="font-size: 1.5rem; font-weight: 700;">Friday</p>
-            <p style="font-size: 0.8rem; color: var(--text-muted);">Average: ₦1.8M / Friday</p>
-        </div>
-        <div class="card" style="border-left: 4px solid var(--secondary);">
-            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Highest Growth LGA</h4>
-            <p style="font-size: 1.5rem; font-weight: 700;">Adavi</p>
-            <p style="font-size: 0.8rem; color: var(--text-muted);">↑ 22% increase this month</p>
-        </div>
-        <div class="card" style="background: var(--dark); color: white;">
-            <h4 style="font-size: 0.9rem; margin-bottom: 1rem;">System Health</h4>
-            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; margin-bottom: 0.5rem;">
-                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent);"></div>
-                <span>Server Status: Online</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem;">
-                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent);"></div>
-                <span>Last Sync: 2 mins ago</span>
-            </div>
-        </div>
-    </div>
 </div>
 
-<?php include 'layouts/footer.php'; ?>
+<?php require APPROOT . '/Views/inc/admin/footer.php'; ?>

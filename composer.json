@@ -1,0 +1,10 @@
+{
+    "name": "emmadochi/toan-kogi",
+    "description": "Kogi State Revenue App MVC Refactor",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {}
+}

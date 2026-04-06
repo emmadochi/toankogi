@@ -1,0 +1,33 @@
+# Ignore temporary/diagnostic PHP and text files
+admins.txt
+check_schema.php
+cleanup_ids.php
+create_test_admin.php
+create_test_admin_fixed.php
+dbs.txt
+describe_members.php
+diag_output.txt
+diag_verification.php
+diag_verification_detailed.php
+diag_verification_json.php
+ensure_schema.php
+migrate.php
+run_audit_migration.php
+run_migration.php
+run_paystack_migration.php
+schema_check.txt
+tables.txt
+test_functions.php
+tmp/
+tmp_describe_lgas.php
+tmp_schema.php
+users.txt
+verify_pass_fix.php
+
+# Composer dependencies
+vendor/
+composer.phar
+
+# Workspace files
+.gemini/
+.antigravity/

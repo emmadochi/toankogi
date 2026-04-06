@@ -48,6 +48,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li class="menu-item">
+            <a href="complaints.php" class="menu-link <?php echo ($current_page == 'complaints.php') ? 'active' : ''; ?>">
+                <i>💡</i> <span>Complaints</span>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="users.php" class="menu-link <?php echo ($current_page == 'users.php') ? 'active' : ''; ?>">
                 <i>🛡️</i> <span>User Roles</span>
             </a>
