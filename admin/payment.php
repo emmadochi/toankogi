@@ -5,7 +5,7 @@
     <p class="page-subtitle">Lookup member and record revenue collection.</p>
 </div>
 
-<div class="content-grid" style="grid-template-columns: 1.5fr 1fr;">
+<div class="content-grid">
     <!-- Payment Form Section -->
     <div class="card">
         <div class="card-title">Transaction Details</div>

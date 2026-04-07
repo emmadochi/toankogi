@@ -9,85 +9,84 @@ $lga = $_GET['lga'] ?? 'Lokoja';
 $unit = $_GET['unit'] ?? 'Central Park';
 ?>
 
-<div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="display: flex; gap: 1rem; align-items: center;">
-        <a href="registration_success.php" style="text-decoration: none; font-size: 1.5rem; color: var(--text-muted); padding: 0.5rem;">←</a>
+<div class="page-header" style="flex-wrap: wrap; gap: 1.5rem;">
+    <div style="display: flex; gap: 0.8rem; align-items: center;">
+        <a href="index.php" class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 1.2rem;">←</a>
         <div>
-            <h1 class="page-title">Digital Receipt Preview</h1>
-            <p class="page-subtitle">Transaction ID: #<?php echo $transaction_id; ?></p>
+            <h1 class="page-title">Digital Receipt</h1>
+            <p class="page-subtitle" style="font-family: monospace; font-size: 0.8rem;">#<?php echo $transaction_id; ?></p>
         </div>
     </div>
-    <div style="display: flex; gap: 1rem;">
-        <button class="btn btn-outline" onclick="window.print()">🖨️ Print Receipt</button>
-        <button class="btn btn-primary">📩 Download PDF</button>
+    <div style="display: flex; gap: 0.8rem; width: 100%; justify-content: flex-start;">
+        <button class="btn btn-outline" onclick="window.print()" style="flex: 1; font-size: 0.85rem; padding: 0.8rem;">🖨️ Print</button>
+        <button class="btn btn-primary" style="flex: 1; font-size: 0.85rem; padding: 0.8rem;">📩 Download</button>
     </div>
 </div>
 
-<div style="display: flex; justify-content: center; padding: 2rem 0;">
+<div style="display: flex; justify-content: center; padding: 1.5rem 0 3rem;">
     <!-- The Receipt Container -->
-    <div id="printable-receipt" style="width: 450px; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid var(--glass-border); position: relative; overflow: hidden;">
+    <div id="printable-receipt" style="max-width: 450px; width: 100%; background: white; padding: 2.5rem 1.5rem; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid var(--glass-border); position: relative; overflow: hidden; margin: 0 auto;">
         
         <!-- Decorative Header -->
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: linear-gradient(90deg, var(--primary), var(--secondary));"></div>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: var(--primary);"></div>
         
         <!-- Association Branding -->
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <img src="../images/logo.jpeg" alt="TOAN Logo" style="height: 60px; margin-bottom: 1rem; border-radius: 8px;">
-            <h2 style="font-size: 1.25rem; margin-bottom: 0.2rem; color: var(--dark);">TOAN KOGI STATE</h2>
-            <p style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Official Revenue Receipt</p>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="../images/logo.jpeg" alt="Logo" style="height: 50px; margin-bottom: 1rem; border-radius: 8px;">
+            <h2 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--dark);">TOAN KOGI STATE</h2>
+            <p style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">Official Revenue Receipt</p>
         </div>
 
         <!-- Success Badge -->
-        <div style="text-align: center; margin-bottom: 2.5rem;">
-            <div style="width: 60px; height: 60px; background: #ecfdf5; color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.5rem;">✓</div>
-            <h3 style="font-size: 1.5rem; font-weight: 700; margin: 0;">₦200.00</h3>
-            <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">Payment Successful</p>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 50px; height: 50px; background: #ecfdf5; color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.25rem; border: 1px solid rgba(5, 150, 105, 0.2);">✓</div>
+            <h3 style="font-size: 1.75rem; font-weight: 800; margin: 0; color: var(--dark);">₦200.00</h3>
+            <p style="font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase;">Payment Confirmed</p>
         </div>
 
         <!-- Transaction Details -->
-        <div style="border-top: 1px dashed var(--glass-border); border-bottom: 1px dashed var(--glass-border); padding: 1.5rem 0; margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">Member Name</span>
-                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo $member_name; ?></span>
+        <div style="border-top: 1px dashed #e2e8f0; border-bottom: 1px dashed #e2e8f0; padding: 1.5rem 0; margin-bottom: 2rem;">
+            <div class="receipt-row" style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Member Name</span>
+                <span style="font-size: 0.75rem; font-weight: 700; text-align: right;"><?php echo $member_name; ?></span>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">Unique ID</span>
-                <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);"><?php echo $member_id; ?></span>
+            <div class="receipt-row" style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Unique ID</span>
+                <span style="font-size: 0.75rem; font-weight: 800; color: var(--primary); font-family: monospace;"><?php echo $member_id; ?></span>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">Plate Number</span>
-                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo $plate_no; ?></span>
+            <div class="receipt-row" style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Plate Number</span>
+                <span style="font-size: 0.75rem; font-weight: 700;"><?php echo $plate_no; ?></span>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">LGA / Unit</span>
-                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo $lga; ?> / <?php echo $unit; ?></span>
+            <div class="receipt-row" style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">LGA / Unit</span>
+                <span style="font-size: 0.75rem; font-weight: 700; text-align: right;"><?php echo $lga; ?> / <?php echo $unit; ?></span>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">Payment Cycle</span>
-                <span style="font-size: 0.85rem; font-weight: 700; background: var(--bg-alt); padding: 2px 8px; border-radius: 4px;">Daily Tax</span>
+            <div class="receipt-row" style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Payment Cycle</span>
+                <span style="font-size: 0.75rem; font-weight: 700; background: var(--bg-alt); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--glass-border);">Daily Tax</span>
             </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span style="font-size: 0.85rem; color: var(--text-muted);">Date & Time</span>
-                <span style="font-size: 0.85rem; font-weight: 700;"><?php echo date('d M Y, h:i A'); ?></span>
+            <div class="receipt-row" style="display: flex; justify-content: space-between;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Processed On</span>
+                <span style="font-size: 0.75rem; font-weight: 700;"><?php echo date('d M Y, h:i A'); ?></span>
             </div>
         </div>
 
         <!-- Verification Section -->
-        <div style="display: flex; gap: 1.5rem; align-items: center; background: var(--bg-alt); padding: 1.25rem; border-radius: 12px;">
-            <div id="receipt-qrcode" style="width: 80px; height: 80px; background: white; padding: 6px; border-radius: 8px;">
-                <!-- Real QR will be rendered here -->
-                <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent); background-size: 8px 8px; opacity: 0.2;"></div>
+        <div style="display: flex; gap: 1rem; align-items: center; background: #fafafa; padding: 1.25rem; border-radius: 12px; border: 1px solid #f1f1f1;">
+            <div id="receipt-qrcode" style="width: 70px; height: 70px; background: white; padding: 4px; border-radius: 6px; flex-shrink: 0;">
+                <!-- Real QR -->
             </div>
             <div style="flex: 1;">
-                <p style="font-size: 0.75rem; font-weight: 700; margin-bottom: 0.3rem;">SECURITY VERIFICATION</p>
-                <p style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.4;">Field agents can scan this code to instantly verify the authenticity of this digital receipt.</p>
+                <p style="font-size: 0.65rem; font-weight: 800; margin-bottom: 0.2rem; text-transform: uppercase;">Security Verification</p>
+                <p style="font-size: 0.6rem; color: var(--text-muted); line-height: 1.5; font-weight: 500;">Field agents can scan this code to verify authenticity instantly.</p>
             </div>
         </div>
 
         <!-- Footer -->
-        <div style="text-align: center; margin-top: 2.5rem;">
-            <p style="font-size: 0.7rem; color: var(--text-muted); font-style: italic;">This is a computer-generated receipt. No signature required.</p>
-            <p style="font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-top: 0.5rem;">BUILDING KOGI TOGETHER</p>
+        <div style="text-align: center; margin-top: 2rem;">
+            <p style="font-size: 0.65rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.5rem;">Digital copy. No signature required.</p>
+            <p style="font-size: 0.75rem; font-weight: 800; color: var(--primary); letter-spacing: 1px;">KOGI STATE REVENUE APP</p>
         </div>
 
     </div>
@@ -95,14 +94,15 @@ $unit = $_GET['unit'] ?? 'Central Park';
 
 <style>
 @media print {
-    .page-header, .sidebar, .topbar { display: none !important; }
+    .page-header, .sidebar, .topbar, .bottom-nav { display: none !important; }
+    body { background: white !important; padding: 0 !important; margin: 0 !important; }
+    .main-content { padding: 0 !important; margin: 0 !important; }
     #printable-receipt { 
         box-shadow: none !important; 
-        border: none !important; 
-        width: 100% !important; 
-        padding: 0 !important;
+        border: 1px solid #eee !important; 
+        max-width: 400px !important;
+        margin: 20px auto !important;
     }
-    body { background: white !important; }
 }
 </style>
 

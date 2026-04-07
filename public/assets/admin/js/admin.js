@@ -48,37 +48,28 @@ window.confirmAction = function(options = {}) {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Sidebar Toggle for Mobile
+    // Sidebar / Drawer Toggle for Mobile
     const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-        const toggle = document.createElement('button');
-        toggle.className = 'menu-toggle-admin';
-        toggle.innerHTML = '☰';
-        toggle.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            cursor: pointer;
-            display: none;
-        `;
-        
-        if (window.innerWidth <= 1024) {
-            toggle.style.display = 'block';
-            document.body.appendChild(toggle);
-        }
+    const toggle = document.getElementById('sidebarToggle');
+    const closeBtn = document.getElementById('closeSidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
 
-        toggle.addEventListener('click', () => {
-            const isClosed = sidebar.style.transform === 'translateX(-100%)' || !sidebar.style.transform;
-            sidebar.style.transform = isClosed ? 'translateX(0)' : 'translateX(-100%)';
-        });
+    if (sidebar && toggle) {
+        const openDrawer = () => {
+            sidebar.classList.add('active');
+            backdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeDrawer = () => {
+            sidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        toggle.addEventListener('click', openDrawer);
+        if(closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        if(backdrop) backdrop.addEventListener('click', closeDrawer);
     }
 
     // SweetAlert Flash Messages

@@ -17,9 +17,14 @@
 <?php include 'layouts/sidebar.php'; ?>
 <div class="main-layout">
     <header class="topbar">
-        <div class="search-bar">
-            <span>🔍</span>
-            <input type="text" placeholder="Search by Plate No or ID...">
+        <div class="topbar-left">
+            <button id="sidebarToggle" class="hamburger-menu" aria-label="Toggle Menu">
+                <span>☰</span>
+            </button>
+            <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" placeholder="Search by Plate No or ID...">
+            </div>
         </div>
         <div class="user-nav">
             <!-- View Switcher (Demo Only) -->

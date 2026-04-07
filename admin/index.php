@@ -6,39 +6,35 @@
 </div>
 
 <!-- Stats Grid -->
-<div class="stats-grid">
-    <div class="stat-card">
-        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary);">💰</div>
-        <div class="stat-value">₦4,250,000</div>
-        <div class="stat-label">Today's Revenue</div>
-        <div class="stat-trend trend-up">↑ 12.5% from yesterday</div>
+<div class="stats-grid" style="margin-bottom: 2rem;">
+    <div class="stat-card" style="border-left: 4px solid var(--primary);">
+        <div class="stat-value" style="font-size: 1.5rem; font-weight: 800;">₦4.2M</div>
+        <div class="stat-label" style="font-weight: 700; font-size: 0.65rem; text-transform: uppercase;">Today's Revenue</div>
+        <div class="stat-trend trend-up" style="font-weight: 800; font-size: 0.65rem;">↑ 12.5%</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-icon" style="background: #fef3c7; color: #d97706;">🗓️</div>
-        <div class="stat-value">₦28,400,000</div>
-        <div class="stat-label">This Week</div>
-        <div class="stat-trend trend-up">↑ 8.2% from last week</div>
+    <div class="stat-card" style="border-left: 4px solid #f59e0b;">
+        <div class="stat-value" style="font-size: 1.5rem; font-weight: 800;">₦28.4M</div>
+        <div class="stat-label" style="font-weight: 700; font-size: 0.65rem; text-transform: uppercase;">This Week</div>
+        <div class="stat-trend trend-up" style="font-weight: 800; font-size: 0.65rem;">↑ 8.2%</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-icon" style="background: #ecfdf5; color: #10b981;">👥</div>
-        <div class="stat-value">15,420</div>
-        <div class="stat-label">Active Members</div>
-        <div class="stat-trend">Total registered tricycles</div>
+    <div class="stat-card" style="border-left: 4px solid var(--secondary);">
+        <div class="stat-value" style="font-size: 1.5rem; font-weight: 800;">15,420</div>
+        <div class="stat-label" style="font-weight: 700; font-size: 0.65rem; text-transform: uppercase;">Active Members</div>
+        <div class="stat-trend" style="font-weight: 800; font-size: 0.65rem; color: var(--text-muted);">TRS VERIFIED</div>
     </div>
-    <div class="stat-card">
-        <div class="stat-icon" style="background: #fee2e2; color: #ef4444;">⚠️</div>
-        <div class="stat-value">1,205</div>
-        <div class="stat-label">Inactive / Expired</div>
-        <div class="stat-trend trend-down">Requires enforcement</div>
+    <div class="stat-card" style="border-left: 4px solid #ef4444;">
+        <div class="stat-value" style="font-size: 1.5rem; font-weight: 800;">1,205</div>
+        <div class="stat-label" style="font-weight: 700; font-size: 0.65rem; text-transform: uppercase;">Inactive</div>
+        <div class="stat-trend trend-down" style="font-weight: 800; font-size: 0.65rem;">ENFORCEMENT</div>
     </div>
 </div>
 
 <div class="content-grid">
     <!-- Revenue Trend Chart -->
     <div class="card">
-        <div class="card-title">
-            <span>Payment Trends (Last 7 Days)</span>
-            <select id="trendFilter" style="padding: 0.4rem; border-radius: 8px; border: 1px solid var(--glass-border); font-family: inherit; font-size: 0.8rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1rem; font-weight: 800;">Payment Trends</h3>
+            <select class="form-input" style="padding: 0.3rem 0.6rem; font-size: 0.75rem; border-radius: 8px; width: auto;">
                 <option>Daily</option>
                 <option>Weekly</option>
             </select>
@@ -50,7 +46,7 @@
 
     <!-- Revenue by LGA Chart -->
     <div class="card">
-        <div class="card-title">Revenue by LGA</div>
+        <h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem;">Revenue by LGA</h3>
         <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
             <canvas id="lgaRevenueChart"></canvas>
         </div>
@@ -59,6 +55,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const isMobile = window.innerWidth < 768;
+
     // Shared Chart Options
     const chartOptions = {
         responsive: true,
@@ -66,12 +64,14 @@ document.addEventListener('DOMContentLoaded', function() {
         plugins: {
             legend: {
                 display: true,
-                position: 'bottom',
+                position: isMobile ? 'bottom' : 'right',
                 labels: {
                     usePointStyle: true,
+                    padding: 20,
                     font: {
                         family: 'Outfit',
-                        size: 11
+                        size: 11,
+                        weight: '700'
                     }
                 }
             }
@@ -85,36 +85,34 @@ document.addEventListener('DOMContentLoaded', function() {
         data: {
             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             datasets: [{
-                label: 'Revenue (₦)',
+                label: 'Revenue',
                 data: [420000, 580000, 310000, 490000, 650000, 210000, 150000],
                 borderColor: '#059669',
                 backgroundColor: 'rgba(5, 150, 105, 0.1)',
                 fill: true,
                 tension: 0.4,
                 borderWidth: 3,
-                pointBackgroundColor: '#059669',
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#059669',
+                pointBorderWidth: 2,
                 pointRadius: 4
             }]
         },
         options: {
             ...chartOptions,
+            plugins: { ...chartOptions.plugins, legend: { display: false } },
             scales: {
                 y: {
                     beginAtZero: true,
-                    grid: {
-                        drawBorder: false,
-                        color: 'rgba(0,0,0,0.05)'
-                    },
+                    grid: { color: 'rgba(0,0,0,0.05)', drawBorder: false },
                     ticks: {
-                        callback: function(value) {
-                            return '₦' + value.toLocaleString();
-                        }
+                        font: { size: 10, weight: '600' },
+                        callback: value => '₦' + (value/1000) + 'k'
                     }
                 },
                 x: {
-                    grid: {
-                        display: false
-                    }
+                    grid: { display: false },
+                    ticks: { font: { size: 10, weight: '600' } }
                 }
             }
         }
@@ -125,29 +123,22 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(lgaCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Lokoja', 'Okene', 'Dekina', 'Idah', 'Kabba', 'Ankpa'],
+            labels: ['Lokoja', 'Okene', 'Dekina', 'Idah', 'Kabba'],
             datasets: [{
-                data: [1250000, 850000, 720000, 590000, 420000, 420000],
-                backgroundColor: [
-                    '#059669', // Lokoja (Primary)
-                    '#d97706', // Okene (Secondary)
-                    '#10b981', // Dekina
-                    '#0f172a', // Idah
-                    '#3b82f6', // Kabba
-                    '#6366f1'  // Ankpa
-                ],
+                data: [45, 25, 15, 10, 5],
+                backgroundColor: ['#059669', '#d97706', '#10b981', '#0f172a', '#3b82f6'],
                 borderWidth: 0,
-                hoverOffset: 10
+                hoverOffset: 15
             }]
         },
         options: {
             ...chartOptions,
-            cutout: '70%',
+            cutout: '72%',
             plugins: {
                 ...chartOptions.plugins,
                 legend: {
                     ...chartOptions.plugins.legend,
-                    position: 'right'
+                    position: isMobile ? 'bottom' : 'right'
                 }
             }
         }
@@ -157,64 +148,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Recent Activities -->
 <div class="card" style="margin-top: 1.5rem;">
-    <div class="card-title">Recent Transactions & Activities</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1rem; font-weight: 800;">Recent Transactions</h3>
+        <a href="revenue.php" style="font-size: 0.75rem; font-weight: 800; color: var(--primary); text-decoration: none;">VIEW ALL →</a>
+    </div>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>Date/Time</th>
-                    <th>Member / Plate No</th>
-                    <th>LGA / Unit</th>
-                    <th>Type</th>
-                    <th>Amount</th>
+                    <th>Actor</th>
+                    <th class="hide-mobile">LGA / Unit</th>
+                    <th class="hide-mobile">Type</th>
+                    <th>Value</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                $recent = [
+                    ['Ameh Sunday', 'LKJ-123-AB', 'Lokoja / Central', 'Daily Tax', '₦200', 'Paid'],
+                    ['Musa Ibrahim', 'OKN-456-XY', 'Okene / Market', 'Weekly Tax', '₦1,200', 'Paid'],
+                    ['John Doe', 'IDH-789-QW', 'Idah / Terminal', 'Registration', '₦5,000', 'Pending'],
+                    ['Usman Ali', 'KAB-098-MN', 'Kabba / Area A', 'Daily Tax', '₦200', 'Owing'],
+                ];
+
+                foreach($recent as $r): ?>
                 <tr>
-                    <td>12:45 PM Today</td>
                     <td>
-                        <p style="font-weight: 600;">Ameh Sunday</p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">LKJ-123-AB</p>
+                        <p style="font-weight: 700; font-size: 0.85rem;"><?php echo $r[0]; ?></p>
+                        <p style="font-size: 0.7rem; color: var(--text-muted); font-family: monospace; font-weight: 700;"><?php echo $r[1]; ?></p>
                     </td>
-                    <td>Lokoja / Central 1</td>
-                    <td>Daily Tax</td>
-                    <td style="font-weight: 600;">₦200</td>
-                    <td><span class="status-check paid">Paid</span></td>
-                </tr>
-                <tr>
-                    <td>11:20 AM Today</td>
+                    <td class="hide-mobile" style="font-size: 0.8rem; font-weight: 600;"><?php echo $r[2]; ?></td>
+                    <td class="hide-mobile" style="font-size: 0.75rem;"><span class="role-badge" style="font-size: 0.65rem;"><?php echo $r[3]; ?></span></td>
+                    <td style="font-weight: 800; font-size: 0.85rem; color: var(--dark);"><?php echo $r[4]; ?></td>
                     <td>
-                        <p style="font-weight: 600;">Musa Ibrahim</p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">OKN-456-XY</p>
+                        <?php 
+                        $s_class = 'paid';
+                        if($r[5] == 'Pending') $s_class = 'pending';
+                        if($r[5] == 'Owing') $s_class = 'owing';
+                        ?>
+                        <span class="status-check <?php echo $s_class; ?>" style="font-size: 0.6rem; padding: 2px 10px; font-weight: 800;"><?php echo strtoupper($r[5]); ?></span>
                     </td>
-                    <td>Okene / Market</td>
-                    <td>Weekly Tax</td>
-                    <td style="font-weight: 600;">₦1,200</td>
-                    <td><span class="status-check paid">Paid</span></td>
                 </tr>
-                <tr>
-                    <td>09:15 AM Today</td>
-                    <td>
-                        <p style="font-weight: 600;">John Doe</p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">IDH-789-QW</p>
-                    </td>
-                    <td>Idah / Terminal</td>
-                    <td>New Registration</td>
-                    <td style="font-weight: 600;">₦5,000</td>
-                    <td><span class="status-check pending">Pending Approval</span></td>
-                </tr>
-                <tr>
-                    <td>Yesterday</td>
-                    <td>
-                        <p style="font-weight: 600;">Usman Ali</p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">KAB-098-MN</p>
-                    </td>
-                    <td>Kabba / Area A</td>
-                    <td>Daily Tax</td>
-                    <td style="font-weight: 600;">₦200</td>
-                    <td><span class="status-check owing">Owing</span></td>
-                </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

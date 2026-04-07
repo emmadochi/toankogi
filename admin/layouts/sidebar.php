@@ -3,8 +3,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <aside class="sidebar">
     <div class="sidebar-header">
-        <img src="../images/logo.jpeg" alt="TOAN Logo" class="sidebar-logo">
-        <h1 class="sidebar-title">TOAN <span>KOGI</span></h1>
+        <div class="header-logo-group">
+            <img src="../images/logo.jpeg" alt="TOAN Logo" class="sidebar-logo">
+            <h1 class="sidebar-title">TOAN <span>KOGI</span></h1>
+        </div>
+        <button id="closeSidebar" class="close-sidebar-btn" aria-label="Close Sidebar">✕</button>
     </div>
     <ul class="sidebar-menu">
         <li class="menu-item">

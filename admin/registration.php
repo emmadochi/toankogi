@@ -5,20 +5,20 @@
     <p class="page-subtitle">Register a new member and generate a unique digital ID.</p>
 </div>
 
-<div class="content-grid" style="grid-template-columns: 1fr 350px; gap: 2rem;">
+<div class="content-grid">
     <!-- Registration Form -->
     <div class="card">
-        <form style="display: flex; flex-direction: column; gap: 2rem;">
+        <form style="display: flex; flex-direction: column; gap: 2.5rem;">
             <!-- Section: Passport Photo -->
             <div class="form-section">
                 <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--primary); display: flex; align-items: center; gap: 10px;">
                     <span style="background: var(--primary); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">1</span>
                     Passport Photograph
                 </h3>
-                <div style="border: 2px dashed var(--glass-border); border-radius: 15px; padding: 2rem; text-align: center; background: var(--bg-alt); cursor: pointer; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)';" onmouseout="this.style.borderColor='var(--glass-border)';" onclick="alert('Digital Camera System: Please connect an external camera or browse files.')">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.2;">📷</div>
-                    <p style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Click to upload or take a snapshot</p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted);">Format: JPEG, PNG (Max 2MB)</p>
+                <div style="border: 2px dashed var(--glass-border); border-radius: 15px; padding: 2.5rem; text-align: center; background: var(--bg-alt); cursor: pointer; transition: 0.3s;" onclick="alert('Digital Camera System: Please connect an external camera or browse files.')">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.3;">📷</div>
+                    <p style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark);">Click to upload or take a snapshot</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: 500x500px (Max 2MB)</p>
                 </div>
             </div>
 
@@ -28,25 +28,25 @@
                     <span style="background: var(--primary); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">2</span>
                     Owner Information
                 </h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="admin-grid">
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Full Name</label>
-                        <input type="text" id="reg-name" placeholder="e.g. Ameh Sunday" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); transition: var(--transition);">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="reg-name" placeholder="Ameh Sunday" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Phone Number</label>
-                        <input type="tel" placeholder="e.g. 08012345678" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt);">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" placeholder="08012345678" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Gender</label>
-                        <select style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); font-family: inherit;">
+                        <label class="form-label">Gender</label>
+                        <select class="form-input">
                             <option>Male</option>
                             <option>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Blood Group</label>
-                        <select style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); font-family: inherit;">
+                        <label class="form-label">Blood Group</label>
+                        <select class="form-input">
                             <option>O+</option>
                             <option>A+</option>
                             <option>B+</option>
@@ -54,13 +54,13 @@
                             <option>O-</option>
                         </select>
                     </div>
-                    <div class="form-group" style="grid-column: span 2;">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Next of Kin (Name & Phone)</label>
-                        <input type="text" placeholder="e.g. Mary Sunday - 09088776655" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt);">
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label class="form-label">Next of Kin (Name & Phone)</label>
+                        <input type="text" placeholder="Mary Sunday - 09088776655" class="form-input">
                     </div>
-                    <div class="form-group" style="grid-column: span 2;">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Residential Address</label>
-                        <textarea rows="2" placeholder="Enter full address" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); font-family: inherit;"></textarea>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label class="form-label">Residential Address</label>
+                        <textarea rows="2" placeholder="Enter full address" class="form-input" style="height: auto;"></textarea>
                     </div>
                 </div>
             </div>
@@ -71,18 +71,18 @@
                     <span style="background: var(--primary); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">3</span>
                     Vehicle & Location
                 </h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="admin-grid">
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Plate Number</label>
-                        <input type="text" id="reg-plate" placeholder="e.g. LKJ-123-ABC" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt);">
+                        <label class="form-label">Plate Number</label>
+                        <input type="text" id="reg-plate" placeholder="LKJ-123-ABC" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Engine Number</label>
-                        <input type="text" placeholder="e.g. ENG-456789" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt);">
+                        <label class="form-label">Engine Number</label>
+                        <input type="text" placeholder="ENG-456789" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">LGA</label>
-                        <select style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); font-family: inherit;">
+                        <label class="form-label">LGA</label>
+                        <select class="form-input">
                             <option>Lokoja</option>
                             <option>Okene</option>
                             <option>Dekina</option>
@@ -93,8 +93,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Unit</label>
-                        <select style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); outline: none; background: var(--bg-alt); font-family: inherit;">
+                        <label class="form-label">Unit</label>
+                        <select class="form-input">
                             <option>Central Park 01</option>
                             <option>Market Gate</option>
                             <option>University Road</option>
@@ -104,9 +104,9 @@
             </div>
 
             <!-- Action Buttons -->
-            <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
-                <button type="button" id="complete-reg-btn" class="btn btn-primary" style="flex: 1; padding: 1rem;">Complete Registration</button>
-                <button type="reset" class="btn btn-outline" style="padding: 1rem;">Clear Form</button>
+            <div style="display: flex; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border); flex-wrap: wrap;">
+                <button type="button" id="complete-reg-btn" class="btn btn-primary" style="flex: 2; padding: 1rem; min-width: 200px;">Complete Registration</button>
+                <button type="reset" class="btn btn-outline" style="flex: 1; padding: 1rem; min-width: 150px;">Clear Form</button>
             </div>
         </form>
     </div>
